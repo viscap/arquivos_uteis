@@ -1,0 +1,43 @@
+Export
+
+Open VirtualBox and enter into the File option to choice Export Appliance...
+
+at the top left corner, then file and export appliance
+
+You will then get an assistance window to help you generating the image.
+
+    Select the VM to export
+
+    Enter the output file path and name
+
+    be careful with the output path and file name making sure to leave the file extension untouched
+
+    You can choice a format, which I always leave the default OVF 1.
+
+    Finally you can write metadata like Version and Description
+
+Now you have an OVA file that you can carry to whatever machine to use it.
+
+
+Import
+
+Open VirtualBox and enter into the File option to choice Import
+
+You will then get an assistance window to help you loading the image.
+
+    Enter the path to the file that you have previously exported
+
+    chose the previously generated file
+
+    Then you can modify the settings of the VM like RAM size, CPU, etc.
+
+    give a configuration according to your system, not all of it but enough
+
+    My recommendation on this is to enable the Reinitialize the MAC address of all the network cards option
+
+    Press Import and done!
+
+Now you have cloned the VM from the host machine into another one
+
+
+Fonte: http://askubuntu.com/questions/588426/how-to-export-and-import-virtualbox-vm-images
