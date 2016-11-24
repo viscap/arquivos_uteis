@@ -1,5 +1,126 @@
-sudo apt-get install ros-indigo-ros-control
-sudo apt-get install ros-indigo-rqt
+Esse tutorial descreve passo a passo a instalação dos softwares ROS, Gazebo, Ardupilot, e vários pacotes e modelos necessários para realizar a simulaçao 3D de um quadrotor com a Pixhawk.
+Essa instalação foi testada no Ubuntu 14.04, portanto é recomendado utilizar esse sistema.
+
+
+Passo 1 - Configurar o sistema
+
+Instalar programas básicos no sistema
+
+	sudo apt-get update
+	sudo apt-get install gawk make git curl cmake
+
+Instalar dependencias do MAVProxy
+
+	sudo apt-get install g++ python-pip python-matplotlib python-serial python-wxgtk2.8 python-scipy python-opencv python-numpy python-pyparsing ccache realpath libopencv-dev
+
+Instalar o MAVProxy
+
+	sudo pip2 install pymavlink catkin_pkg --upgrade
+	sudo pip install MAVProxy==1.5.2
+
+Instalar a biblioteca ArUco
+	
+	Fazer o download em https://github.com/viscap/arquivos_uteis/blob/master/aruco-1.3.0.tgz
+
+	cd ~/Downloads
+  tar -xvzf aruco-1.3.0.tgz
+  cd aruco-1.3.0/
+  mkdir build && cd build
+  cmake ..
+  make
+  sudo make install
+
+
+Passo 2 - Baixar o software da Ardupilot
+
+	mkdir -p ~/simulation; cd ~/simulation
+	git clone https://github.com/viscap/ardupilot -b gazebo
+
+
+Passo 3 - Instalar o JSBSim
+
+	cd ~/simulation
+	git clone git://github.com/viscap/jsbsim.git
+	# Additional dependencies required
+	sudo apt-get install libtool automake autoconf libexpat1-dev
+	cd jsbsim
+	./autogen.sh --enable-libraries
+	make -j2
+	sudo make install
+
+
+Passo 4 - Instalar o ROS
+
+	sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+	sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net --recv-key 0xB01FA116
+	sudo apt-get update
+
+	sudo apt-get install ros-indigo-ros-base
+
+	sudo rosdep init
+	rosdep update
+
+	echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
+	source ~/.bashrc
+
+	sudo apt-get    install python-rosinstall          \
+		                      ros-indigo-octomap-msgs    \
+		                      ros-indigo-joy             \
+		                      ros-indigo-geodesy         \
+		                      ros-indigo-octomap-ros     \
+		                      ros-indigo-mavlink         \
+		                      ros-indigo-control-toolbox \
+													ros-indigo-ros-control     \
+													ros-indigo-rqt						 \
+		                      unzip
+
+
+Passo 5 - Instalar o Gazebo
+
+	sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+
+	wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+
+	sudo apt-get update
+	sudo apt-get remove .*gazebo.* '.*sdformat.*' '.*ignition-math.*' && sudo apt-get update && sudo apt-get install gazebo7 libgazebo7-dev drcsim7
+
+
+Passo 6 - Criar uma workspace do ROS
+
+	mkdir -p ~/simulation/ros_catkin_ws/src
+
+	cd ~/simulation/ros_catkin_ws/src
+	catkin_init_workspace
+	cd ~/simulation/ros_catkin_ws
+	catkin_make
+	source devel/setup.bash
+
+	cd src/
+
+	git clone https://github.com/viscap/ardupilot_sitl_gazebo_plugin
+	git clone https://github.com/viscap/hector_gazebo/
+	git clone https://github.com/viscap/rotors_simulator -b sonar_plugin
+	git clone https://github.com/viscap/mav_comm.git
+	git clone https://github.com/viscap/glog_catkin.git
+	git clone https://github.com/viscap/catkin_simple.git
+	git clone https://github.com/viscap/mavros.git
+	git clone https://github.com/viscap/gazebo_ros_pkgs.git -b indigo-devel
+	#Add Python and C++ examples
+	git clone https://github.com/viscap/gazebo_cpp_examples
+	git clone https://github.com/viscap/gazebo_python_examples
+
+	cd ~/simulation/ros_catkin_ws
+	catkin_make --pkg mav_msgs mavros_msgs gazebo_msgs
+	source devel/setup.bash
+	catkin_make -j 4
+
+
+Passo 7 - Fazer o download dos modelos do drone
+
+	mkdir -p ~/.gazebo/models
+	git clone https://github.com/viscap/erle_gazebo_models
+	mv erle_gazebo_models/* ~/.gazebo/models
+
 
 Obs: Se na hora de rodar o simulador não funcionar, dar catkin_make
 de novo na workspace e tentar novamente.
