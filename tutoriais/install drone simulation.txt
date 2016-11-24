@@ -23,12 +23,12 @@ Instalar a biblioteca ArUco
 	Fazer o download em https://github.com/viscap/arquivos_uteis/blob/master/aruco-1.3.0.tgz
 
 	cd ~/Downloads
-  tar -xvzf aruco-1.3.0.tgz
-  cd aruco-1.3.0/
-  mkdir build && cd build
-  cmake ..
-  make
-  sudo make install
+        tar -xvzf aruco-1.3.0.tgz
+        cd aruco-1.3.0/
+        mkdir build && cd build
+        cmake ..
+        make
+        sudo make install
 
 
 Passo 2 - Baixar o software da Ardupilot
@@ -70,8 +70,8 @@ Passo 4 - Instalar o ROS
 		                      ros-indigo-octomap-ros     \
 		                      ros-indigo-mavlink         \
 		                      ros-indigo-control-toolbox \
-                          ros-indigo-ros-control     \
-                          ros-indigo-rqt						 \
+                                      ros-indigo-ros-control     \
+                                      ros-indigo-rqt						 \
 		                      unzip
 
 
