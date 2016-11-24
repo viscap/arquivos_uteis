@@ -70,8 +70,8 @@ Passo 4 - Instalar o ROS
 		                      ros-indigo-octomap-ros     \
 		                      ros-indigo-mavlink         \
 		                      ros-indigo-control-toolbox \
-													ros-indigo-ros-control     \
-													ros-indigo-rqt						 \
+                          ros-indigo-ros-control     \
+                          ros-indigo-rqt						 \
 		                      unzip
 
 

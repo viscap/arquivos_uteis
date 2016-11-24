@@ -1,5 +1,0 @@
-sudo apt-get install ros-indigo-ros-control
-sudo apt-get install ros-indigo-rqt
-
-Obs: Se na hora de rodar o simulador não funcionar, dar catkin_make
-de novo na workspace e tentar novamente.
