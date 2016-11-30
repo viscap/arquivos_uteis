@@ -1,0 +1,55 @@
+SIMULAÇÃO BÁSICA (http://docs.erlerobotics.com/simulation/vehicles/erle_copter/tutorial_1)
+
+- Executar o simulador da Pixhawk (SITL):
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	cd ~/simulation/ardupilot/ArduCopter
+	../Tools/autotest/sim_vehicle.sh -j 4 -f Gazebo
+	
+	
+- Em outro terminal, executar o Gazebo:
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	roslaunch ardupilot_sitl_gazebo_plugin erlecopter_spawn.launch
+	
+	
+- Decolar o drone - executar os seguintes comandos no MavProxy:
+
+	mode GUIDED
+	arm throttle
+	takeoff 2
+	
+
+
+NÓ CONTROLADOR QUE SEGUE A MARCA (http://docs.erlerobotics.com/simulation/vehicles/erle_copter/tutorial_5)
+
+- Executar o simulador da Pixhawk (SITL):
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	cd ~/simulation/ardupilot/ArduCopter
+	../Tools/autotest/sim_vehicle.sh -j 4 -f Gazebo
+
+
+- Em outro terminal, executar o Gazebo:
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	roslaunch ardupilot_sitl_gazebo_plugin erlecopter_mark.launch
+
+
+- Decolar o drone - executar os seguintes comandos no MavProxy:
+
+	mode GUIDED
+	arm throttle
+	takeoff 4
+	param set SYSID_MYGCS 1
+
+
+- Em outro terminal, executar o nó controlador:
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	rosrun  ros_erle_pattern_follower ros_erle_pattern_follower
+
+
+- No MavProxy, mudar para modo LOITER:
+
+	mode loiter
