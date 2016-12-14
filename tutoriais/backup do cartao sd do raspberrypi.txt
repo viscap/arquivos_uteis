@@ -1,0 +1,45 @@
+Caso aconteça algum problema e o sistema do Raspberry Pi for corrompido, será necessário refazer toda a instalação a partir do zero, o que é
+demorado e trabalhoso. Caso seja criada uma imagem do sistema em um ponto em que ele esteja estável, é possível regravar essa imagem no cartão
+SD, recuperando o sistema estável em apenas alguns minutos. Abaixo o passo-a-passo necessário para fazer esse processo:
+
+
+	Criar uma imagem a partir do cartão SD do Raspberry Pi
+
+	1 - No computador, executar o comando 
+		
+		df -h
+		
+	2 - Inserir o cartão SD do Raspberry Pi no computador
+	
+	3 - Executar novamente o comando 
+	
+		df -h
+		
+	4 - Os novos itens que apareceram na lista representam o cartão que acabou de ser inserido. Provavelmente serão dois novos nomes, já que
+	    o sistema do RPi tem duas partições. Será algo parecido com "/dev/sdx1" e "/dev/sdx2" onde a letra x irá variar. No meu sistema aparece
+	    como "/dev/sde".
+	    
+	5 - Desmontar os dispositivos relacionados ao cartão. Para isso será necessário executar o comando umount para cada dispositivo que apareceu
+	    depois que o cartão foi inserido. No meu caso eu executei:
+	    
+		umount /dev/sde1
+		umount /dev/sde2
+			
+	6 - Usar o comando "sudo dd if=/dev/sdx of=/path/to/image bs=1M" para clonar o cartão, substituindo "/dev/sdx" pelo nome que o cartão apareceu
+		no seu sistema e "/path/to/image" pelo caminho do arquivo .img que você quer criar. No meu caso eu fiz:
+		
+		sudo dd if=/dev/sde of=/home/lmi/raspberrypi_ubuntu_ros.img bs=1M
+		
+	7 - Esperar. Vai parecer que o terminal travou, mas depois de alguns minutos ele deve finalizar a criação da imagem corretamente.
+	
+	
+	
+	Gravar uma imagem no cartão SD
+
+	1 - Executar os passos de 1 a 5 do item anterior para determinar o nome do cartão e desmontá-lo do sistema.
+	
+	2 - Gravar a imagem com o dd:
+	
+		sudo dd bs=4M if=raspberrypi_ubuntu_ros.img of=/dev/sde
+		
+		Substituindo corretamente o nome do arquivo .img e o nome do dispositivo.
