@@ -1,0 +1,10 @@
+http://www.ros.org/news/2016/01/new-book-mastering-ros-for-robotics-programming.html
+https://www.packtpub.com/hardware-and-creative/mastering-ros-robotics-programming
+https://www.amazon.com/Programming-Robots-ROS-Practical-Introduction/dp/1449323898
+http://u.cs.biu.ac.il/~yehoshr1/89-685/
+http://wiki.ros.org/Books/Programming_Robots_with_ROS
+http://wiki.ros.org/turtlesim
+https://support.clearpathrobotics.com/hc/en-us/categories/200165835-ROS
+http://wiki.ros.org/Books
+https://cse.sc.edu/~jokane/agitr/
+http://dscl.lcsr.jhu.edu/ME530707_2014
