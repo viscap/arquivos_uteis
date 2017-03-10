@@ -1,0 +1,34 @@
+KOALLA - Algoritmo para evitar obstáculos usando visão computacional
+
+- Instalação:
+
+  cd ~/simulation/ros_catkin_ws/src
+	git clone https://github.com/viscap/koalla.git
+	cd ~simulation/ros_catkin_ws
+	catkin_make
+	
+- Execução:
+
+- Executar o simulador da Pixhawk (SITL):
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	cd ~/simulation/ardupilot/ArduCopter
+	../Tools/autotest/sim_vehicle.sh -j 4 -f Gazebo
+	
+	
+- Em outro terminal, executar o Gazebo, carregando o mundo do pacote do koalla:
+
+	source ~/simulation/ros_catkin_ws/devel/setup.bash
+	roslaunch koalla koalla.launch
+	
+	
+- Decolar o drone - executar os seguintes comandos no MavProxy:
+
+	mode GUIDED
+	arm throttle
+	takeoff 1
+	
+
+- O Koala passará a controlar o drone assim que ele mudar para o modo LOITER: Digitar no MavProxy:
+
+	mode loiter
