@@ -6,7 +6,10 @@ SIMULAÇÃO BÁSICA (http://docs.erlerobotics.com/simulation/vehicles/erle_copte
 	cd ~/simulation/ardupilot/ArduCopter
 	../Tools/autotest/sim_vehicle.sh -j 4 -f Gazebo
 	
-	
+- Apenas na primeira vez que rodar a simulação, executar o seguinte comando no MavProxy:
+	param load /[path_to_your_home_directory]/simulation/ardupilot/Tools/Frame_params/Erle-Copter.param
+
+
 - Em outro terminal, executar o Gazebo:
 
 	source ~/simulation/ros_catkin_ws/devel/setup.bash
