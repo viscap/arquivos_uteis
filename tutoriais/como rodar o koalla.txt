@@ -2,10 +2,10 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 
 - Instalação:
 
-  cd ~/simulation/ros_catkin_ws/src
+  	cd ~/simulation/ros_catkin_ws/src
 	git clone https://github.com/viscap/koalla.git
-	cd ~simulation/ros_catkin_ws
-	catkin_make
+	cd ~/simulation/ros_catkin_ws
+	catkin_make --pkg koalla
 	
 - Execução:
 
@@ -16,10 +16,14 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 	../Tools/autotest/sim_vehicle.sh -j 4 -f Gazebo
 	
 	
-- Em outro terminal, executar o Gazebo, carregando o mundo do pacote do koalla:
+- Em outro terminal, executar o Gazebo, utilizando o arquivo launch do pacote koalla
 
 	source ~/simulation/ros_catkin_ws/devel/setup.bash
 	roslaunch koalla koalla.launch
+	
+	
+	OBS: Para abrir mundos diferentes do padrão, passar endereço do arquivo world como argumento:
+	roslaunch koalla koalla.launch world_name:=[endereco_da_pasta_home]/simulation/ros_catkin_ws/src/koalla/worlds/world1.world
 	
 	
 - Decolar o drone - executar os seguintes comandos no MavProxy:
@@ -32,3 +36,4 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 - O Koala passará a controlar o drone assim que ele mudar para o modo LOITER: Digitar no MavProxy:
 
 	mode loiter
+
