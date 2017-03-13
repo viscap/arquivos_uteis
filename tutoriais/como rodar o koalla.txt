@@ -38,8 +38,16 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 	arm throttle
 	takeoff 1
 	
+	
+- Mandar o ROS salvar a posição do drone ao longo do tempo em um arquivo bag
+
+	cd ~/simulation/ros_catkin_ws/src/koalla/bagfiles
+	rosbag record -O [nome_do_arquivo] /mavros/local_position/pose
+	
 
 - O Koala passará a controlar o drone assim que ele mudar para o modo LOITER: Digitar no MavProxy:
 
 	mode loiter
 
+
+- Após realizar a simulação, lembrar de parar o rosbag dando um Ctrl + C no terminal em que ele foi executado.
