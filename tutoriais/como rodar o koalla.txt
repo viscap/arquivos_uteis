@@ -2,6 +2,11 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 
 - Instalação:
 
+	1° - Instalar dependências:
+	sudo apt-get update
+	sudo apt-get install ros-indigo-image-transport ros-indigo-cv-bridge
+
+	2° - Fazer o download e compilar o pacote Koalla:
   	cd ~/simulation/ros_catkin_ws/src
 	git clone https://github.com/viscap/koalla.git
 	cd ~/simulation/ros_catkin_ws
@@ -19,11 +24,14 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 - Em outro terminal, executar o Gazebo, utilizando o arquivo launch do pacote koalla
 
 	source ~/simulation/ros_catkin_ws/devel/setup.bash
-	roslaunch koalla koalla.launch
+	roslaunch koalla koalla_gazebo.launch
 	
 	
 	OBS: Para abrir mundos diferentes do padrão, passar endereço do arquivo world como argumento:
+	EXEMPLO:
 	roslaunch koalla koalla.launch world_name:=[endereco_da_pasta_home]/simulation/ros_catkin_ws/src/koalla/worlds/world1.world
+	OU:
+	roslaunch koalla koalla.launch world_name:=[endereco_da_pasta_home]/simulation/ros_catkin_ws/src/koalla/worlds/outdoor_village.world
 	
 
 - Na janela do Gazebo, mudar a velocidade da simulaçao: 
@@ -38,16 +46,16 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 	arm throttle
 	takeoff 1
 	
-	
+
+- O Koala passará a controlar o drone assim que for publicada uma mensagem contendo "true" no tópico /koalla/enable_control
+
+	rostopic pub -1 /koalla/enable_contr std_msgs/Bool "data: true"
+
+
 - Mandar o ROS salvar a posição do drone ao longo do tempo em um arquivo bag
 
 	cd ~/simulation/ros_catkin_ws/src/koalla/bagfiles
 	rosbag record -O [nome_do_arquivo] /mavros/local_position/pose
-	
-
-- O Koala passará a controlar o drone assim que ele mudar para o modo LOITER: Digitar no MavProxy:
-
-	mode loiter
 
 
 - Após realizar a simulação, lembrar de parar o rosbag dando um Ctrl + C no terminal em que ele foi executado.
