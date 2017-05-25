@@ -49,7 +49,7 @@ KOALLA - Algoritmo para evitar obstáculos usando visão computacional
 
 - O Koala passará a controlar o drone assim que for publicada uma mensagem contendo "true" no tópico /koalla/enable_control
 
-	rostopic pub -1 /koalla/enable_contr std_msgs/Bool "data: true"
+	rostopic pub -1 /koalla/enable_control std_msgs/Bool "data: true"
 
 
 - Mandar o ROS salvar a posição do drone ao longo do tempo em um arquivo bag
