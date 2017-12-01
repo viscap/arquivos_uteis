@@ -16,8 +16,8 @@ Instalar dependencias do MAVProxy
 Instalar o MAVProxy
 
 	sudo pip install MAVProxy
-	echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.
-	sudo adduser <username> dialoutbashrc - Substituir "<username>" pelo nome do usuario
+	echo "export PATH=$PATH:$HOME/.local/bin" >> ~/.bashrc
+	sudo adduser <username> dialout - Substituir "<username>" pelo nome do usuario
 	
 
 
